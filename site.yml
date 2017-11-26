@@ -1,20 +1,9 @@
 ---
   - name: Install the Hashicorp Suite
-    hosts: all
+    hosts: "{{ which_hosts }}"
     become: yes
     roles:
       - role: hashicorp-tools
-        hashicorp_tools:
-          packer:
-            state: latest
-          terraform:
-            state: latest
-          nomad:
-            state: latest
-          consul:
-            state: absent
-          vault:
-            state: latest
     post_tasks:
       - name: Add Hashi Tools to Path for Users
         lineinfile:
